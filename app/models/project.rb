@@ -28,7 +28,7 @@ class Project < ActiveRecord::Base
   
   # returns a string with all custom tasks to be loaded by the Capistrano config
   def tasks
-    ProjectConfiguration.templates[template]::TASKS
+    ProjectConfiguration.templates[template]::TASKS 
   end
   
   # returns a better form of the project name for use inside Capistrano recipes
