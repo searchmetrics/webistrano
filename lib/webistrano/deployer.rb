@@ -244,6 +244,7 @@ module Webistrano
       return nil if val.nil?
       
       val.strip!
+      
       case val
       when 'true'
         true
@@ -253,11 +254,20 @@ module Webistrano
         nil
       when /\A\[(.*)\]/
         $1.split(',').map{|subval| type_cast(subval)}
-      when /\A\{(.*)\}/
-        $1.split(',').collect{|pair| pair.split('=>')}.inject({}) do |hash, (key, value)|
-	        hash[type_cast(key)] = type_cast(value)
-	        hash
+      when /\A(\{.*\})/
+        begin
+          evaled = eval(val)
+          if evaled.class.to_s == "Hash"
+            return evaled
+          end
+        rescue Exception=>e
+          # do nothing
 	      end
+
+	      $1.split(',').collect{|pair| pair.split('=>')}.inject({}) do |hash, (key, value)|
+          hash[type_cast(key)] = type_cast(value)
+          hash
+        end
       else # symbol or string
         if cvs_root_defintion?(val)
           val.to_s
