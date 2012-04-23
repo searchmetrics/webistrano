@@ -9,11 +9,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110512144542) do
+ActiveRecord::Schema.define(:version => 20120423145516) do
 
   create_table "configuration_parameters", :force => true do |t|
     t.string   "name"
-    t.string   "value"
+    t.text     "value"
     t.integer  "project_id"
     t.integer  "stage_id"
     t.string   "type"
@@ -60,6 +60,11 @@ ActiveRecord::Schema.define(:version => 20110512144542) do
     t.string   "template"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "projects_users", :id => false, :force => true do |t|
+    t.integer "project_id"
+    t.integer "user_id"
   end
 
   create_table "recipe_versions", :force => true do |t|
