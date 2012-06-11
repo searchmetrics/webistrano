@@ -1,4 +1,4 @@
-class ChangeDataTypeConfiurationValues < ActiveRecord::Migration
+class ChangeDataTypeConfigurationValues < ActiveRecord::Migration
   def self.up
     change_column :configuration_parameters, :value, :text
   end
