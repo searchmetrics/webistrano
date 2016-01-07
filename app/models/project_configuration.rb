@@ -14,6 +14,7 @@ class ProjectConfiguration < ConfigurationParameter
       'pure_file' => Webistrano::Template::PureFile,
       'unicorn' => Webistrano::Template::Unicorn,
       'searchmetrics' => Webistrano::Template::Searchmetrics,
+      'searchmetrics_git' => Webistrano::Template::SearchmetricsGit,
     }
   end
   
